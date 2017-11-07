@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <GL/glut.h>
+#include <math.h>
+
+
+
+struct face {
+	int a,b,c,d;
+};
+
+struct vertex {
+	float x,y,z;
+};
+
+struct vertex v[507];
+struct face f[968];
+
+void init(void)
+{
+}
+
+void display(void)
+{
+
+	float x1,y1,z1,x2,y2,z2;
+	double x3,y3,z3,angle;
+
+	int j = 0;
+   glClear(GL_COLOR_BUFFER_BIT);
+
+   glBegin (GL_TRIANGLES);
+	for(j=0;j<=968;j++)	
+	{
+
+	x1 = v[f[j].a].x - v[f[j].b].x;
+	x2 = v[f[j].a].x - v[f[j].c].x;
+	y1 = v[f[j].a].y - v[f[j].b].y;
+	y2 = v[f[j].a].y - v[f[j].c].y;
+	z1 = v[f[j].a].z - v[f[j].b].z;
+	z2 = v[f[j].a].z - v[f[j].c].z;
+	
+	x3 = y1 * z2 - y2 * z1;
+	y3 = z1 * x2 - z2 * x1;
+	z3 = x1 * y2 - x2 * y1;
+
+	if(z3 > 0)
+	{
+	angle = cacos((z3/(csqrt(cpow(x3,2)+cpow(y3,2)+cpow(z3,2)))));
+	
+	
+	glColor3f(0, 0, angle);	
+
+	glVertex3f (v[f[j].a].x,v[f[j].a].y,v[f[j].a].z);
+  	glVertex3f (v[f[j].b].x,v[f[j].b].y,v[f[j].b].z);
+   	glVertex3f (v[f[j].c].x,v[f[j].c].y,v[f[j].c].z);
+	}
+	}
+	glEnd ();
+   	glFlush();
+   
+}
+
+void reshape(int w, int h)
+{
+  printf("reshape\n");
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+	int i;
+	int j;
+	
+	printf("keypress: %d    x: %d    y: %d\n", key, x, y);
+
+	if(key == 'a' || key == 'A')
+	{
+		for(i = 0; i<507; i++)
+		{
+			v[i].x = v[i].x*cos(.1*M_PI) + v[i].z*sin(.1*M_PI);
+			v[i].z = -v[i].x*sin(.1*M_PI) + v[i].z*cos(.1*M_PI);
+		}
+	}
+	
+	if(key == 'd' || key == 'D')
+	{
+		for(i = 0; i<507; i++)
+		{
+			v[i].x = v[i].x*cos(.1*M_PI) - v[i].z*sin(.1*M_PI);
+			v[i].z = v[i].x*sin(.1*M_PI) + v[i].z*cos(.1*M_PI);
+		}
+	}
+	display();
+
+}
+
+main(argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+
+	
+	char buf[1024];
+	float a,b,c;
+	int i, dummy;
+
+	for(;strcmp(buf, "end_header"); gets(buf));
+
+	printf("ate header\n");
+	for (i=0; i<507; i++) 
+		scanf("%f %f %f", &(v[i].x), &(v[i].y), &(v[i].z));
+
+	for (i=0; i<968; i++) 
+		scanf("%d %d %d %d", 
+		  &dummy, &(f[i].a), &(f[i].b), &(f[i].c));
+
+
+	printf("Vertices\n");
+	for (i=0; i<507; i++) 
+		printf("v[%d] = %f %f %f\n", i, v[i].x, v[i].y, v[i].z);
+
+	printf("Faces\n");
+	for (i=0; i<968; i++) 
+		printf("f[%d] = %d %d %d %d\n", 
+			i, f[i].a, f[i].b, f[i].c, f[i].d);
+
+
+	glutInit(&argc, argv);
+   	glutInitDisplayMode (GLUT_SINGLE);
+   	glutInitWindowSize (400, 400);
+  	glutCreateWindow (argv[0]);
+	glutReshapeFunc (reshape);
+   	glutKeyboardFunc (keyboard);
+	glutDisplayFunc (display);
+   	glutMainLoop();
+}
