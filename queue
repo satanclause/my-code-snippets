@@ -1,0 +1,43 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+#define MAXQUEUE 100
+
+int head=0, tail=0;
+char queue[MAXQUEUE];
+
+
+enqueue(v)
+char v;
+{
+	if(tail - head == MAXQUEUE) return;
+	queue[tail%MAXQUEUE]=v;
+	tail++;
+}
+
+
+
+
+char dequeue() {
+
+	if (head == tail) return(0);
+	if(tail == 0) return;
+	head++;
+	return(queue[head-1]);
+}
+
+
+main (argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+	int i;
+	char *str, c;
+
+	str = argv[1];
+	for (i=0; i<strlen(str); i++) enqueue(str[i]);
+
+	while (c=dequeue()) printf("%c ", c);
+	printf("\n");
+}
