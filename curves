@@ -1,0 +1,536 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <GL/glut.h>
+
+	float x = 0;
+	float a = 0;
+	float b = 0;
+	float c = 0;
+	float d = 0;
+	float e = 0;
+	float f = 0;
+	float g = 0;	
+	float h = 0;	
+	float i = 0;	
+	float j = 0;	
+	float k = 0;	
+	float l = 0;	
+	float m = 0;	
+	float n = 0;	
+	float o = 0;	
+	float aw = 0;	
+	float q = 0;		
+	float r = 0;	
+	float s = 0;	
+	float t = 0;	
+	float u = 0;	
+	float v = 0;	
+	float w = 0;	
+	float y = 0;
+	float z = 0;		
+	float ab = 0;		
+	float ac = 0;		
+	float ad = 0;	
+	float ae = 0;		
+	float af = 0;	
+	float ag = 0;	
+	float ah = 0;	
+	float ai = 0;	
+	float aj = 0;	
+	float ak = 0;	
+	float al = 0;	
+	float am = 0;	
+	float an = 0;	
+	float ao = 0;	
+	float ap = 0;	
+	float aq = 0;	
+	float ar = 0;	
+	float as = 0;	
+	float at = 0;	
+	float au = 0;	
+	float av = 0;	
+
+float stepSize = 0.001;
+
+typedef struct point{
+	float x;
+	float y;
+	float z;
+}p;
+
+p p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15;
+
+void init(argc, argv)
+int argc;
+char **argv;
+{
+	srand(time(NULL));
+	x = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	a = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	b = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));	
+	c = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	d = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	e = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));	
+	f = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	g = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	h = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	i = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	j = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	k = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	l = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	m = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	n = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	o = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	aw = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));	
+	q = (float)rand()/(float)(RAND_MAX/1);		
+srand(time(NULL));
+	r = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	s = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	t = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	u = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	v = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	w = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	y = (float)rand()/(float)(RAND_MAX/1);
+srand(time(NULL));
+	z = (float)rand()/(float)(RAND_MAX/1);		
+srand(time(NULL));
+	ab = (float)rand()/(float)(RAND_MAX/1);		
+srand(time(NULL));
+	ac = (float)rand()/(float)(RAND_MAX/1);		
+srand(time(NULL));
+	ad = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ae = (float)rand()/(float)(RAND_MAX/1);		
+srand(time(NULL));
+	af = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ag = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ah = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ai = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	aj = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ak = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	al = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	am = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	an = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ao = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ap = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	aq = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	ar = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	as = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	at = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	au = (float)rand()/(float)(RAND_MAX/1);	
+srand(time(NULL));
+	av = (float)rand()/(float)(RAND_MAX/1);
+
+	p0.x = x;
+	p0.y = a;
+	p0.z = -b;
+	
+	p1.x = c;
+	p1.y = -d;
+	p1.z = -e;
+
+	p2.x = -f;
+	p2.y = g;
+	p2.z = h;
+
+	p3.x = i;
+	p3.y = j;
+	p3.z = k;
+
+	p4.x = -l;
+	p4.y = m;
+	p4.z = -n;
+
+	p5.x = -o;
+	p5.y = -aw;
+	p5.z = q;
+
+	p6.x = r;
+	p6.y = -s;
+	p6.z = t;
+
+	p7.x = u;
+	p7.y = v;
+	p7.z = w;
+
+	p8.x = -x;
+	p8.y = y;
+	p8.z = -z;
+
+	p9.x = -ab;
+	p9.y = ac;
+	p9.z = ad;
+
+	p10.x = ae;
+	p10.y = af;
+	p10.z = -ag;
+
+	p11.x = -ah;
+	p11.y = -ai;
+	p11.z = -aj;
+
+	p12.x = ak;
+	p12.y = al;
+	p12.z = am;
+
+	p13.x = -an;
+	p13.y = ao;
+	p13.z = -ap;
+
+	p14.x = aq;
+	p14.y = ar;
+	p14.z = -as;
+
+	p15.x = at;
+	p15.y = au;
+	p15.z = av;
+
+	
+}
+
+int ch(m,t)
+int m,t;
+{
+		if(t == 0)
+		{
+			return 1;
+		}
+		 if(t == 1)
+		{
+			return 3;
+		}
+		 if(t == 2)
+		{
+			return 3;
+		}
+	 	if(t == 3)
+		{
+			return 1;
+		}
+	return 1;
+}
+
+
+/*  Draw 2 diagonal lines to form an X
+ */
+void display(void)
+{
+	float t,x,y,u,v,z;
+	int i,j;
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBegin (GL_POINTS);
+
+		for (t=0.0; t<=1.0; t+= stepSize)
+		 {
+			for(u=0.0; t<=1.0; t+=stepSize)
+			{
+				for(i = 0; i<=3; i++)
+				{
+					for(j = 0; j<=3; j++)
+					{
+						if(i == 0)
+						{	
+							if(j == 0)
+							{	
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p0.x;
+							}
+							else if(j == 1)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p1.x;
+							}
+							else if(j == 2)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p2.x;
+							}
+							else if(j == 3)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p3.x;
+							}
+						}
+						else if(i == 1)
+						{		
+							if(j == 0)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p4.x;
+							}
+							else if(j == 1)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p5.x;
+							}
+							else if(j == 2)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p6.x;
+							}
+							else if(j == 3)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p7.x;
+							}
+						}
+						else if(i == 2)
+						{		
+							if(j == 0)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p8.x;
+							}
+							else if(j == 1)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p9.x;
+							}
+							else if(j == 2)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p10.x;
+							}
+							else if(j == 3)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p11.x;
+							}
+						}
+						else if(i == 3)
+						{		
+							if(j == 0)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p12.x;
+							}
+							else if(j == 1)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p13.x;
+							}
+							else if(j == 2)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p14.x;
+							}
+							else if(j == 3)
+							{
+								x = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p15.x;
+							}
+						}
+						if(i == 0)
+						{	
+							if(j == 0)
+							{	
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p0.y;
+							}
+							else if(j == 1)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p1.y;
+							}
+							else if(j == 2)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p2.y;
+							}
+							else if(j == 3)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p3.y;
+							}
+						}
+						else if(i == 1)
+						{		
+							if(j == 0)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p4.y;
+							}
+							else if(j == 1)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p5.y;
+							}
+							else if(j == 2)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p6.y;
+							}
+							else if(j == 3)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p7.y;
+							}
+						}
+						else if(i == 2)
+						{		
+							if(j == 0)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p8.y;
+							}
+							else if(j == 1)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p9.y;
+							}
+							else if(j == 2)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p10.y;
+							}
+							else if(j == 3)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p11.y;
+							}
+						}
+						else if(i == 3)
+						{		
+							if(j == 0)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p12.y;
+							}
+							else if(j == 1)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p13.y;
+							}
+							else if(j == 2)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p14.y;
+							}
+							else if(j == 3)
+							{
+								y = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p15.y;
+							}
+						}
+						if(i == 0)
+						{	
+							if(j == 0)
+							{	
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p0.z;
+							}
+							else if(j == 1)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p1.z;
+							}
+							else if(j == 2)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p2.z;
+							}
+							else if(j == 3)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p3.z;
+							}
+						}
+						else if(i == 1)
+						{		
+							if(j == 0)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p4.z;
+							}
+							else if(j == 1)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p5.z;
+							}
+							else if(j == 2)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p6.z;
+							}
+							else if(j == 3)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p7.z;
+							}
+						}
+						else if(i == 2)
+						{		
+							if(j == 0)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p8.z;
+							}
+							else if(j == 1)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p9.z;
+							}
+							else if(j == 2)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p10.z;
+							}
+							else if(j == 3)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p11.z;
+							}
+						}
+						else if(i == 3)
+						{		
+							if(j == 0)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p12.z;
+							}
+							else if(j == 1)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p13.z;
+							}
+							else if(j == 2)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p14.z;
+							}
+							else if(j == 3)
+							{
+								z = ch(3,i)*pow(u,i)*pow((1-u),3-i)*ch(3,j)*pow(v,j)*pow((1-v),(3-j))*p15.z;
+							}
+						}
+			printf("x = %f   y = %f z = %f\n", x, y,z);
+			glVertex3f(x,y,z);
+		}
+		}
+		}
+		}
+	glEnd ();
+	glFlush();
+}
+
+void reshape(int w, int h)
+{
+  printf("reshape\n");
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+	printf("keypress: %d    x: %d    y: %d\n", key, x, y);
+
+}
+
+
+
+main(argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+   glutInit(&argc, argv);
+   //glutInitDisplayMode (GLUT_SINGLE | GLUT_INDEX);
+   //glutInitDisplayMode (GLUT_SINGLE);
+   glutInitWindowSize (800, 800);
+   glutCreateWindow (argv[0]);
+   init(argc, argv);
+   glutReshapeFunc (reshape);
+   glutKeyboardFunc (keyboard);
+   glutDisplayFunc (display);
+   glutMainLoop();
+}
