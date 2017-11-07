@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int count = 0;
+
+typedef struct N{
+	int val;
+	struct N *next[26];
+}node;
+
+node* put(x, str, t, d)
+int d,t;
+char *str;
+node *x;
+{
+
+ if(!x){
+	x = malloc(sizeof(node));
+	memset(x,0,sizeof(node));
+}
+
+if(d == strlen(str)){
+	x->val = t;
+	return x;
+}
+char c = str[d];
+x->next[c - 'a'] = put(x->next[c - 'a'], str, t, d+1);
+return x;
+}
+
+boots(n)
+node *n;
+{
+	int i = 0;
+	if(!n) 
+	{
+		return;
+	}
+	printf("count = %d \n",count);
+	count++;
+	for(i=0; i<26; i++)
+	{
+		boots(n->next[i]);
+	}
+}
+
+
+main(argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+	char buf[1024];
+	int i, val = 0;
+	node *trie;
+	
+	trie = calloc(26,sizeof(node));
+
+	while(gets(buf)){
+	for(i=0; i<strlen(buf); i++)
+		{
+		if((buf[i] >= 'A') && (buf[i] <= 'Z'))
+			buf[i] += 31;
+		
+		}
+		put(trie, buf, val, 0);
+		val++;
+	}
+	boots(trie);
+}
