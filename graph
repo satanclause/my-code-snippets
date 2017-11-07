@@ -1,0 +1,86 @@
+import java.awt.image.DataBufferByte;
+import java.io.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.GridBagLayout;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.util.*;
+
+
+public class graph extends JFrame {
+	static JFrame bframe;
+	static MYJPanel p;
+
+	public graph () {
+		p = new MYJPanel();
+
+	}
+
+
+
+	public static void main (String[] args) {
+
+	    try {
+
+		bframe=new graph();
+		bframe.add(p);
+		bframe.setSize(256,256);
+
+		bframe.setLocation(0,0);
+		bframe.setVisible(true);
+
+		bframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+		drawLine(Integer.parseInt(args[0]),
+			Integer.parseInt(args[1]),
+			Integer.parseInt(args[2]),
+			Integer.parseInt(args[3]));
+
+		bframe.repaint();
+
+	    } catch (Exception e) {
+		System.out.println(e.getMessage());
+	    }
+	}
+
+
+	static void drawLine(int x0, int y0, int x1, int y1) {
+
+		int ychange, xchange;
+
+		ychange = y1 - y0;
+
+		xchange = x1 - x0;
+
+		if(ychange > xchange)
+		{
+			ychange = ychange/xchange;
+
+			for (int i=x0; i<=x1; i++)
+			{
+			
+			y0 += ychange;
+			p.drawPoint(i,y0);
+			}
+		}
+		else
+		{
+			xchange = xchange/ychange;
+
+			for (int i=y0; i<=y1; i++)
+			{
+			
+			x0 += xchange;
+			p.drawPoint(i,x0);
+			}
+		}
+
+		
+
+		
+	}
+}
