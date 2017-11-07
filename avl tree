@@ -1,0 +1,232 @@
+#include<stdlib.h>
+
+#include<stdio.h>
+
+#include <string.h>
+
+
+
+typedef struct anode 
+{
+	
+char *name;
+	
+int h;
+	
+struct anode *r, *l;
+
+} node;
+
+
+int height = 0;
+
+
+
+
+contains(tree, q) 
+
+node **tree;
+
+char *q;
+
+{
+	
+if(!(*tree)) return;
+
+	
+if ( strcmp((*tree)->name, q) == 0) printf("yes\n");
+	
+contains(&(*tree)->l, q);
+	
+contains(&(*tree)->r, q);
+
+}
+
+
+
+void checktree(tree,item)
+node **tree;
+node *item;
+{
+
+if(*tree.h < (height - 3))
+{
+checktree(&(*tree)->l, item);
+checktree(&(*tree)->r, item);
+}
+else if(strcmp(item->name,*tree->l->l->name) = 0) 
+{
+if(!(*tree->r))
+{
+rightrotation1(&(*tree);
+}
+else return;
+}
+else if(strcmp(item->name,*tree->l->r->name) = 0) 
+{
+if(!(*tree->r))
+{
+rightrotation2(&(*tree);
+}
+else return;
+}
+else if(strcmp(item->name,*tree->r->l->name) = 0) 
+{
+if(!(*tree->l))
+{
+leftrotation2(&(*tree));
+}
+else return;
+}
+else if(strcmp(item->name,*tree->r->r->name) = 0) 
+{
+if(!(*tree->l))
+{
+leftrotation2(&(*tree));
+}
+else return;
+}
+}
+	
+
+insert(tree, item) 
+
+node **tree;
+
+node *item;
+
+{
+	
+if(!(*tree)) 
+{
+		
+*tree = item;
+
+item.h = height;
+height++;	
+return;
+	
+}
+
+	
+if(strcmp(item->name, (*tree)->name) < 0)
+	
+{
+		
+insert(&(*tree)->l, item);
+		
+		
+else if(strcmp(item->name, (*tree)->name) > 0)
+			
+insert(&(*tree)->r, item);
+			
+}
+
+
+
+void rightrotation1(tree)
+
+node **tree;
+{
+
+node *temp;
+
+temp = *tree->r;
+*tree->r = temp->l;
+temp->l = *tree;
+*tree = temp;
+*tree->h = height - 3;
+*tree->l->h = height-2;
+*tree->r->h = height-2;
+} 
+
+void rightrotation2(tree)
+
+{
+
+leftrotation1(&(*tree)->right);
+rightrotation1(&(*tree));
+} 
+
+void leftrotation1(tree)
+node **tree;
+{
+node *temp;
+
+temp = *tree->l;
+*tree->l = temp->r;
+temp->r = *tree;
+*tree = temp;
+*tree->h = height - 3;
+*tree->l->h = height-2;
+*tree->r->h = height-2;
+}
+
+void leftrotation2(tree)
+{
+rightrotation1(&(*tree)->left);
+leftrotation1(&(*tree));
+
+}
+	
+
+
+void printTree(tree)
+
+node *tree;
+
+{
+	
+if (! tree) return;
+	
+printTree(tree->l);
+	
+printf("%s\n",tree->name);
+	
+printTree(tree->r);
+
+}
+
+
+
+
+
+void main(argc, argv, envp)
+
+int argc;
+
+char **argv, **envp;
+
+{
+	
+int i;
+	
+char buf[1024];
+	
+node *curr, *root;
+
+	
+root = 0;
+
+	
+while (gets(buf)) 
+{
+		
+curr = (node *)malloc(sizeof(node));
+		
+curr->l = curr->r = NULL;
+		
+curr->name = strdup(buf);
+		
+printf("insert: %s\n", buf);
+		
+insert(&root, curr);
+
+checktree(&root,
+curr);	
+}
+
+	
+contains(&root, argv[1]);
+
+}
