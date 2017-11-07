@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+printData(d,n)
+int *d,n;
+{
+	int i;
+	for (i=0; i<n; i++) 
+		printf("data[%d] = %d\n", i, d[i]);
+}
+
+
+
+
+/* implement (only) one of your choosing */
+
+
+mergeSort(d, n)
+int *d, n;
+{
+}
+
+heapSort(d, n)
+int *d, n;
+{
+	int k,l,*t;
+	
+	t = malloc(sizeof(int));
+	
+	for(k = (n - 2)/2; k>=0; k--){
+		heapify(d,n,k);
+	}
+	
+	for(l=n-1; l>0;l--){
+		*t = d[l];
+		d[l] =	d[0];
+		d[0] = *t;
+		heapify(d,l,0);
+		}
+
+}
+
+heapify(d,n,j)
+int *d,n,j;
+{
+	int i,*t;
+
+	t = malloc(sizeof(int));
+
+	while(j*2+1 < n){
+		int child = 2*j + 1;
+		if((child + 1 < n) && (d[child] < d[child + 1])){
+			child += 1;
+		}
+
+		if(d[j] < d[child]){
+			*t = d[j];
+			d[j] = d[child];
+			d[child] = *t;
+			j = child;
+		}
+		else
+			return;
+	}
+}
+
+
+
+
+
+
+main(argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+	char buf[1024];
+	int n, *data, i;
+	if (argc !=2 ) {
+		printf("usage: sortAssignment1 #elements\n");
+		exit(1);
+	}
+
+	n = atoi(argv[1]);
+	data = calloc(n, sizeof(int));
+	for (i=0; i<n; i++) {
+		gets(buf);
+		data[i] = atoi(buf);
+	}
+
+
+	printf("unsorted data:\n"); sleep(1);
+	printData(data, n);
+
+	
+	heapSort(data, n);
+
+	printf("After sort\n");
+	printData(data, n);
+}
