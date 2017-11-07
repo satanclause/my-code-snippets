@@ -1,0 +1,55 @@
+#include <stdio.h>
+#define XAXIS 1
+#define YAXIS 2
+#define ZAXIS 4
+
+typedef struct m41{
+	float x,y,z,w;
+} m4x1;
+
+void translate(m4x1 *v, int cnt, float dx, float dy, float dz)
+{
+	for(int i = 0; i <= cnt; i++)
+	{
+		v[i].x += dx;
+		v[i].y += dy;
+		v[i].z += dz;
+	}
+}
+
+void scale(m4x1 *v, int cnt, float sx, float sy, float sz)
+{
+
+	for(int i=0; i<=cnt; i++)
+	{
+		v[i].x *= sx;
+		v[i].y *= sy;
+		v[i].z *= sz;
+	}
+}
+
+void rotate(m4x1 *v, int cnt, int axis, float rad)
+{
+
+	
+
+}
+
+int main()
+{
+
+	m4x1 *v;
+
+	int count;
+
+	float xl,yl,zl;
+
+	xl = .2;
+	yl = .2;
+	zl = .2;
+
+	count = 3;
+
+	translate(v, count, xl, yl, zl);
+
+}
