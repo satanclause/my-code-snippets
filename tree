@@ -1,0 +1,83 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+
+typedef struct node {
+	int id;
+	struct node *left;
+	struct node *right;
+} treenode;
+
+
+
+/* WRITE A RECURSIVE routine which swaps the 
+   left and right child for every node in a given tree */
+/* will this operate in pre, in, or post order fashion?
+does it matter? if so, why does it matter? */
+
+rotate(t)
+treenode *t;
+{
+	if (!t) return;
+	treenode *temp;
+	temp = malloc(sizeof(treenode));
+	temp = t -> left;
+	t -> left = t-> right;
+	t -> right = temp;
+	rotate(t -> right);
+	rotate(t -> left);
+}
+
+
+preorder(t)
+treenode *t;
+{
+	if (!t) return;
+
+	printf("%c\n", t->id);
+	preorder(t->left);
+	preorder(t->right);
+}
+
+
+
+
+main (argc, argv, envp)
+int argc;
+char **argv, **envp;
+{
+
+	treenode *n, *n1, *n2, *n3, *n4, *n5, *n6;
+
+	n = malloc(sizeof(treenode));
+	n1 = malloc(sizeof(treenode));
+	n2 = malloc(sizeof(treenode));
+	n3 = malloc(sizeof(treenode));
+	n4 = malloc(sizeof(treenode));	
+	n5 = malloc(sizeof(treenode));
+	n6 = malloc(sizeof(treenode));
+
+	n -> id = 'a';
+	n1 -> id = 'b';
+	n2 -> id = 'c';
+	n3 -> id = 'd';
+	n4 -> id = 'z';
+	n5 -> id = 'e';
+	n6 -> id = 'f';
+
+	n -> left = n1;
+	n -> right = n2;
+	n1 -> left = n5;
+	n1 -> right = n6;
+	n2 -> left = n3;
+	n2 -> right = n4;
+
+	/* build a binary tree with at least 6 nodes */
+
+	/* now show your rotate function works */
+	preorder(n);
+	rotate(n);
+	preorder(n);
+	
+}
